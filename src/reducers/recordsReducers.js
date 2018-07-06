@@ -6,14 +6,14 @@ export function recordsReducers(state = { records: [] }, action) {
 			return { records: [...state.records, ...action.payload] };
 			break;
 		case 'DELETE_RECORD':
-			const currentBookToDelete = [...state.records];
-			const indexToDelete = currentBookToDelete.findIndex(record => {
+			const currentRecordToDelete = [...state.records];
+			const indexToDelete = currentRecordToDelete.findIndex(record => {
 				return record.id === action.payload.id;
 			});
 			return {
 				records: [
-					...currentBookToDelete.slice(0, indexToDelete),
-					...currentBookToDelete.slice(indexToDelete + 1)
+					...currentRecordToDelete.slice(0, indexToDelete),
+					...currentRecordToDelete.slice(indexToDelete + 1)
 				]
 			};
 			break;
