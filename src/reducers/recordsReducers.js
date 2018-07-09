@@ -1,7 +1,28 @@
 'use strict';
 
-export function recordsReducers(state = { records: [] }, action) {
+export function recordsReducers(
+	state = {
+		records: [
+			{
+				id: 1,
+				title: 'title',
+				description: 'description',
+				price: 11
+			},
+			{
+				id: 2,
+				title: 'title',
+				description: 'description',
+				price: 22
+			}
+		]
+	},
+	action
+) {
 	switch (action.type) {
+		case 'GET_RECORD':
+			return { ...state, records: [...state.records] };
+			break;
 		case 'POST_RECORD':
 			return { records: [...state.records, ...action.payload] };
 			break;

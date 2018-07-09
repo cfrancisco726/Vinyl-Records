@@ -1,5 +1,11 @@
 'use strict';
 
+export function getRecords(record) {
+	return {
+		type: 'GET_RECORDS',
+	};
+}
+
 export function postRecords(record) {
 	return {
 		type: 'POST_RECORD',
