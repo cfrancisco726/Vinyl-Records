@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getRecords } from '../../actions/recordsActions';
 import { bindActionCreators } from 'redux';
-import { Grid, Col, Row, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 import RecordItem from './recordItem';
 import RecordsForm from './recordsForm';
+import Cart from './cart';
 
 class RecordsList extends Component {
 	componentDidMount() {
@@ -16,9 +17,9 @@ class RecordsList extends Component {
 	render() {
 		const recordsList = this.props.records.map(recordsArr => {
 			return (
-				<Col xs={12} sm={6} md={4} key={recordsArr.id}>
+				<Col xs={12} sm={6} md={4} key={recordsArr._id}>
 					<RecordItem
-						id={recordsArr.id}
+						_id={recordsArr._id}
 						title={recordsArr.title}
 						description={recordsArr.description}
 						price={recordsArr.price}
@@ -29,6 +30,9 @@ class RecordsList extends Component {
 		return (
 			<Grid>
 				<Row>
+					<Cart />
+				</Row>
+				<Row style={{ marginTop: '15px' }}>
 					<Col xs={12} sm={6}>
 						<RecordsForm />
 					</Col>

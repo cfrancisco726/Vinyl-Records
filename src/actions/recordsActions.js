@@ -2,7 +2,7 @@
 
 export function getRecords(record) {
 	return {
-		type: 'GET_RECORDS',
+		type: 'GET_RECORDS'
 	};
 }
 

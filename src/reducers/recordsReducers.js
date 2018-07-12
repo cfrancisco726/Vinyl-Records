@@ -4,16 +4,22 @@ export function recordsReducers(
 	state = {
 		records: [
 			{
-				id: 1,
+				_id: 1,
 				title: 'title',
 				description: 'description',
 				price: 11
 			},
 			{
-				id: 2,
+				_id: 2,
 				title: 'title',
 				description: 'description',
 				price: 22
+			},
+			{
+				_id: 3,
+				title: 'title',
+				description: 'description',
+				price: 33
 			}
 		]
 	},
@@ -29,7 +35,7 @@ export function recordsReducers(
 		case 'DELETE_RECORD':
 			const currentRecordToDelete = [...state.records];
 			const indexToDelete = currentRecordToDelete.findIndex(record => {
-				return record.id === action.payload.id;
+				return record._id === action.payload._id;
 			});
 			return {
 				records: [
@@ -41,14 +47,12 @@ export function recordsReducers(
 		case 'UPDATE_RECORD':
 			const currentRecordToUpdate = [...state.records];
 			const indexToUpdate = currentRecordToUpdate.findIndex(record => {
-				return record.id === action.payload.id;
+				return record._id === action.payload._id;
 			});
 			const newRecordToUpdate = {
 				...currentRecordToUpdate[indexToUpdate],
 				title: action.payload.title
 			};
-
-			console.log('what is it newRecordToUpdate', newRecordToUpdate);
 
 			return {
 				records: [
