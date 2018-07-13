@@ -5,7 +5,7 @@ export function recordsReducers(
 		records: [
 			{
 				_id: 1,
-				title: 'title',
+				title: 'title 1',
 				description: 'description',
 				price: 11
 			},
@@ -35,7 +35,7 @@ export function recordsReducers(
 		case 'DELETE_RECORD':
 			const currentRecordToDelete = [...state.records];
 			const indexToDelete = currentRecordToDelete.findIndex(record => {
-				return record._id === action.payload._id;
+				return record._id == action.payload;
 			});
 			return {
 				records: [

@@ -12,7 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-import { postRecords } from '../../actions/recordsActions';
+import { postRecords, deleteRecords } from '../../actions/recordsActions';
 
 class RecordsForm extends Component {
 	handleSubmit() {
@@ -26,7 +26,15 @@ class RecordsForm extends Component {
 		this.props.postRecords(record);
 	}
 
+	onDelete() {
+		let recordId = findDOMNode(this.refs.delete).value;
+		this.props.deleteRecords(recordId);
+	}
+
 	render() {
+		const recordsList = this.props.records.map(recordsArr => {
+			return <option key={recordsArr._id}>{recordsArr._id}</option>;
+		});
 		return (
 			<Well>
 				<Panel>
@@ -54,13 +62,41 @@ class RecordsForm extends Component {
 						Save record
 					</Button>
 				</Panel>
+				<Panel>
+					<FormGroup controlId="formControlsSelect">
+						<ControlLabel>Select a record id to delete</ControlLabel>
+						<FormControl
+							ref="delete"
+							componentClass="select"
+							placeholder="select"
+						>
+							<option value="select">select</option>
+							{recordsList}
+						</FormControl>
+					</FormGroup>
+					<Button onClick={this.onDelete.bind(this)} bsStyle="danger">
+						Delete record
+					</Button>
+				</Panel>
 			</Well>
 		);
 	}
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ postRecords, dispatch });
+function mapStateToProps(state) {
+	return {
+		records: state.records.records
+	};
 }
 
-export default connect(null, mapDispatchToProps)(RecordsForm);
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(
+		{
+			postRecords,
+			deleteRecords
+		},
+		dispatch
+	);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecordsForm);
