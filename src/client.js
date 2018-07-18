@@ -14,7 +14,6 @@ import {
 } from './actions/recordsActions';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-// step 1 create the store
 const middleware = applyMiddleware(thunk, logger);
 const store = createStore(reducers, middleware);
 
@@ -32,8 +31,8 @@ const Routes = (
 				<IndexRoute component={RecordsList} />
 				<Route path="/admin" component={RecordsForm} />
 				<Route path="/cart" component={Cart} />
+				<Route path="/contacts" component={Contact} />
 				<Route path="/about" component={About} />
-				<Route path="/contact" component={Contact} />
 			</Route>
 		</Router>
 	</Provider>

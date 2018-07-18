@@ -75,7 +75,7 @@ class Cart extends Component {
 		const cartItemsList = this.props.cart.map(function(cartArr) {
 			return (
 				<Panel key={cartArr._id}>
-					<Row>
+					<Row style={{ margin: '20px' }}>
 						<Col xs={12} sm={4}>
 							<h6>{cartArr.artist}</h6>
 							<span> </span>
@@ -125,7 +125,7 @@ class Cart extends Component {
 		return (
 			<Panel header="Cart" bsStyle="primary">
 				{cartItemsList}
-				<Row>
+				<Row style={{ margin: '20px' }}>
 					<Col xs={12}>
 						<h6>Total amount: {this.props.totalAmount}</h6>
 						<Button

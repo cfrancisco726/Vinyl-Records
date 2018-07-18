@@ -103,7 +103,7 @@ class RecordsForm extends Component {
 				<Row>
 					<Col xs={12} sm={6}>
 						<Panel>
-							<InputGroup>
+							<InputGroup style={{ margin: '20px' }}>
 								<FormControl type="text" ref="image" value={this.state.img} />
 								<DropdownButton
 									componentClass={InputGroup.Button}
@@ -114,7 +114,7 @@ class RecordsForm extends Component {
 									{imgList}
 								</DropdownButton>
 							</InputGroup>
-							<Image src={this.state.img} responsive />
+							<Image src={this.state.img} responsive style={{ margin: '20px' }} />
 						</Panel>
 					</Col>
 					<Col xs={12} sm={6}>
@@ -122,6 +122,7 @@ class RecordsForm extends Component {
 							<FormGroup
 								controlId="artist"
 								validationState={this.props.validation}
+								style={{ margin: '20px' }}
 							>
 								<ControlLabel>Artist</ControlLabel>
 								<FormControl
@@ -134,6 +135,7 @@ class RecordsForm extends Component {
 							<FormGroup
 								controlId="album"
 								validationState={this.props.validation}
+								style={{ margin: '20px' }}
 							>
 								<ControlLabel>Album</ControlLabel>
 								<FormControl
@@ -146,6 +148,7 @@ class RecordsForm extends Component {
 							<FormGroup
 								controlId="price"
 								validationState={this.props.validation}
+								style={{ margin: '20px' }}
 							>
 								<ControlLabel>Price</ControlLabel>
 								<FormControl
@@ -156,6 +159,7 @@ class RecordsForm extends Component {
 								<FormControl.Feedback />
 							</FormGroup>
 							<Button
+								style={{ margin: '20px' }}
 								onClick={
 									!this.props.msg
 										? this.handleSubmit.bind(this)
@@ -167,7 +171,10 @@ class RecordsForm extends Component {
 							</Button>
 						</Panel>
 						<Panel>
-							<FormGroup controlId="formControlsSelect">
+							<FormGroup
+								controlId="formControlsSelect"
+								style={{ margin: '20px' }}
+							>
 								<ControlLabel>Select a record id to delete</ControlLabel>
 								<FormControl
 									ref="delete"
@@ -178,7 +185,11 @@ class RecordsForm extends Component {
 									{recordsList}
 								</FormControl>
 							</FormGroup>
-							<Button onClick={this.onDelete.bind(this)} bsStyle="danger">
+							<Button
+								onClick={this.onDelete.bind(this)}
+								bsStyle="danger"
+								style={{ margin: '20px' }}
+							>
 								Delete record
 							</Button>
 						</Panel>
