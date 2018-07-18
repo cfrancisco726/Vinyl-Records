@@ -1,40 +1,35 @@
 'use strict';
 
+
 export function cartReducers(state = { cart: [] }, action) {
 	switch (action.type) {
+		case 'GET_CART':
+			return {
+				...state,
+				cart: action.payload,
+				totalAmount: totals(action.payload).amount,
+				totalQty: totals(action.payload).qty
+			};
 		case 'ADD_TO_CART':
 			return {
-				cart: [...state, ...action.payload],
+				...state,
+				cart: action.payload,
 				totalAmount: totals(action.payload).amount,
 				totalQty: totals(action.payload).qty
 			};
 			break;
 		case 'UPDATE_CART':
-			const currentRecordToUpdate = [...state.cart];
-			const indexToUpdate = currentRecordToUpdate.findIndex(record => {
-				return record._id === action._id;
-			});
-			const newRecordToUpdate = {
-				...currentRecordToUpdate[indexToUpdate],
-				quantity: currentRecordToUpdate[indexToUpdate].quantity + action.unit
-			};
-
-			let cartUpdate = [
-				...currentRecordToUpdate.slice(0, indexToUpdate),
-				newRecordToUpdate,
-				...currentRecordToUpdate.slice(indexToUpdate + 1)
-			];
-
 			return {
 				...state,
-				cart: cartUpdate,
-				totalAmount: totals(cartUpdate).amount,
-				totalQty: totals(cartUpdate).qty
+				cart: action.payload,
+				totalAmount: totals(action.payload).amount,
+				totalQty: totals(action.payload).qty
 			};
 			break;
 		case 'DELETE_CART_ITEM':
 			return {
-				cart: [...state, ...action.payload],
+				...state,
+				cart: action.payload,
 				totalAmount: totals(action.payload).amount,
 				totalQty: totals(action.payload).qty
 			};
@@ -50,7 +45,7 @@ export function totals(payloadArr) {
 		})
 		.reduce(function(a, b) {
 			return a + b;
-		}, 0); 
+		}, 0);
 
 	const totalQty = payloadArr
 		.map(function(qty) {

@@ -1,6 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar, Badge } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Menu extends Component {
 	render() {
@@ -8,18 +9,18 @@ class Menu extends Component {
 			<Navbar inverse fixedTop>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/">React-Bootstrap</a>
+						<a href="/">Home</a>
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>
 				<Navbar.Collapse>
 					<Nav>
-						<NavItem eventKey={1} href="/about">
-							About
-						</NavItem>
-						<NavItem eventKey={2} href="/contacts">
-							Contact Us
-						</NavItem>
+						<LinkContainer to="/about">
+							<NavItem eventKey={1}>About</NavItem>
+						</LinkContainer>
+						<LinkContainer to="/contacts">
+							<NavItem eventKey={2}>Contact Us</NavItem>
+						</LinkContainer>
 					</Nav>
 					<Nav pullRight>
 						<NavItem eventKey={1} href="/admin">
@@ -39,4 +40,5 @@ class Menu extends Component {
 		);
 	}
 }
+
 export default Menu;

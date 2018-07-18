@@ -13,11 +13,15 @@ import {
 	Modal
 } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
-import { deleteCartItem, updateCart } from '../../actions/cartActions';
+import { deleteCartItem, updateCart, getCart } from '../../actions/cartActions';
 
 class Cart extends Component {
+	componentDidMount() {
+		this.props.getCart();
+	}
 	onDelete(_id) {
 		const currentRecordToDelete = this.props.cart;
+
 		const indexToDelete = currentRecordToDelete.findIndex(cart => {
 			return cart._id === _id;
 		});
@@ -25,29 +29,34 @@ class Cart extends Component {
 			...currentRecordToDelete.slice(0, indexToDelete),
 			...currentRecordToDelete.slice(indexToDelete + 1)
 		];
-
 		this.props.deleteCartItem(cartAfterDelete);
 	}
-
 	onIncrement(_id) {
-		this.props.updateCart(_id, 1);
+		this.props.updateCart(_id, 1, this.props.cart);
 	}
 	onDecrement(_id, quantity) {
 		if (quantity > 1) {
-			this.props.updateCart(_id, -1);
+			this.props.updateCart(_id, -1, this.props.cart);
 		}
 	}
 
-	constructor() {
-		super();
-		this.state = {};
-		showModal: false;
+	constructor(props, context) {
+		super(props, context);
+
+		this.handleShow = this.handleShow.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+
+		this.state = {
+			show: false
+		};
 	}
-	open() {
-		this.setState({ showModal: true });
+
+	handleClose() {
+		this.setState({ show: false });
 	}
-	close() {
-		this.setState({ showModal: false });
+
+	handleShow() {
+		this.setState({ show: true });
 	}
 
 	render() {
@@ -57,6 +66,7 @@ class Cart extends Component {
 			return this.renderEmpty();
 		}
 	}
+
 	renderEmpty() {
 		return <div />;
 	}
@@ -64,16 +74,16 @@ class Cart extends Component {
 	renderCart() {
 		const cartItemsList = this.props.cart.map(function(cartArr) {
 			return (
-				<Panel key={cartArr.id}>
+				<Panel key={cartArr._id}>
 					<Row>
 						<Col xs={12} sm={4}>
-							<h6>{cartArr.title}</h6>
+							<h6>{cartArr.artist}</h6>
 							<span> </span>
 						</Col>
-						<Col xs={12} sm={2}>
+						<Col xs={12} sm={4}>
 							<h6>usd. {cartArr.price}</h6>
 						</Col>
-						<Col xs={12} sm={2}>
+						<Col xs={12} sm={4}>
 							<h6>
 								qty. <Label bsStyle="success">{cartArr.quantity}</Label>
 							</h6>
@@ -92,24 +102,20 @@ class Cart extends Component {
 									-
 								</Button>
 								<Button
-									onClick={this.onIncrement.bind(
-										this,
-										cartArr._id,
-										cartArr.quantity
-									)}
+									onClick={this.onIncrement.bind(this, cartArr._id)}
 									bsStyle="default"
 									bsSize="small"
 								>
 									+
 								</Button>
+								<span> </span>
 								<Button
 									onClick={this.onDelete.bind(this, cartArr._id)}
 									bsStyle="danger"
 									bsSize="small"
 								>
-									Delete
+									DELETE
 								</Button>
-								<span> </span>
 							</ButtonGroup>
 						</Col>
 					</Row>
@@ -117,34 +123,33 @@ class Cart extends Component {
 			);
 		}, this);
 		return (
-			<Panel bsStyle="primary">
-				<Panel.Heading>Cart</Panel.Heading>
+			<Panel header="Cart" bsStyle="primary">
 				{cartItemsList}
 				<Row>
 					<Col xs={12}>
-						<h6>total Amount:</h6>
+						<h6>Total amount: {this.props.totalAmount}</h6>
 						<Button
-							onClick={this.open.bind(this)}
-							bsStyle="success"
+							onClick={this.handleShow.bind(this)}
+							Style="success"
 							bsSize="small"
 						>
-							PROCEED TO CHECKOUT
+							Proceed to Checkout
 						</Button>
 					</Col>
 				</Row>
-				<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+				<Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
 					<Modal.Header closeButton>
-						<Modal.Title>Thank You</Modal.Title>
+						<Modal.Title>Modal heading</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<h6>Your order has been</h6>
-						<p>You will receive an email confirmation</p>
+						<h6>Your order has been saved</h6>
+						<p>You will receive an email confirmation </p>
 					</Modal.Body>
 					<Modal.Footer>
 						<Col xs={6}>
-							<h6>total $: {this.props.totalAmount}</h6>
+							<h6>total $:{this.props.totalAmount}</h6>
 						</Col>
-						<Button onClick={this.close.bind(this)}>Close</Button>
+						<Button onClick={this.handleClose.bind(this)}>Close</Button>
 					</Modal.Footer>
 				</Modal>
 			</Panel>
@@ -155,7 +160,7 @@ class Cart extends Component {
 function mapStateToProps(state) {
 	return {
 		cart: state.cart.cart,
-		 totalAmount: state.cart.totalAmount,
+		totalAmount: state.cart.totalAmount
 	};
 }
 
@@ -163,7 +168,8 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators(
 		{
 			deleteCartItem: deleteCartItem,
-			updateCart: updateCart
+			updateCart: updateCart,
+			getCart: getCart
 		},
 		dispatch
 	);
