@@ -33,17 +33,6 @@ class RecordItem extends Component {
 		}
 	}
 
-	constructor() {
-		super();
-		this.state = {
-			isClicked: false
-		};
-	}
-
-	onReadMore() {
-		this.setState({ isClicked: true });
-	}
-
 	render() {
 		return (
 			<Well>
@@ -54,16 +43,7 @@ class RecordItem extends Component {
 					<Col xs={6} sm={8}>
 						<h6>{this.props.artist}</h6>
 						<p>
-							{this.props.album.length > 50 && this.state.isClicked === false
-								? this.props.album.substring(0, 50)
-								: this.props.album}{' '}
-							<button className="link" onClick={this.onReadMore.bind(this)}>
-								{this.state.isClicked === false &&
-								this.props.album !== null &&
-								this.props.album.length > 50
-									? '...read more'
-									: ''}
-							</button>
+							{this.props.album}
 						</p>
 						<h6>usd {this.props.price}</h6>
 						<Button onClick={this.handleCart.bind(this)} bsStyle="primary">

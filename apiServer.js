@@ -13,7 +13,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/recordshop',{ useNewUrlParser: true });
+
+mongoose.connect('mongodb://cfran26:test26@ds243491.mlab.com:43491/recordshop');
+// mongoose.connect('mongodb://localhost:27017/recordshop', {
+// 	useNewUrlParser: true
+// });
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, '# MongoDB = connection error:'));
