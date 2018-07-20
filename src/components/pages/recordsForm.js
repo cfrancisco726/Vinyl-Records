@@ -114,7 +114,11 @@ class RecordsForm extends Component {
 									{imgList}
 								</DropdownButton>
 							</InputGroup>
-							<Image src={this.state.img} responsive style={{ margin: '20px' }} />
+							<Image
+								src={this.state.img}
+								responsive
+								style={{ margin: '20px' }}
+							/>
 						</Panel>
 					</Col>
 					<Col xs={12} sm={6}>

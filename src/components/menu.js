@@ -9,7 +9,7 @@ class Menu extends Component {
 			<Navbar inverse fixedTop>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/">Home</a>
+						<a href="/">Vinyl Records</a>
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>

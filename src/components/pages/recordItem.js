@@ -42,9 +42,7 @@ class RecordItem extends Component {
 					</Col>
 					<Col xs={6} sm={8}>
 						<h6>{this.props.artist}</h6>
-						<p>
-							{this.props.album}
-						</p>
+						<p>{this.props.album}</p>
 						<h6>usd {this.props.price}</h6>
 						<Button onClick={this.handleCart.bind(this)} bsStyle="primary">
 							buy now

@@ -39,10 +39,8 @@ class RecordsList extends Component {
 								src="/images/hero_image1.jpg"
 							/>
 							<Carousel.Caption>
-								<h3>First slide label</h3>
-								<p>
-									Nulla vitae elit libero, a pharetra augue mollis interdum.
-								</p>
+								<h3>A better record store experience</h3>
+								<p>Your number 1 destination</p>
 							</Carousel.Caption>
 						</Carousel.Item>
 						<Carousel.Item>
@@ -53,8 +51,8 @@ class RecordsList extends Component {
 								src="/images/hero_image2.jpg"
 							/>
 							<Carousel.Caption>
-								<h3>Second slide label</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+								<h3>Wide range selection</h3>
+								<p>All genres of music</p>
 							</Carousel.Caption>
 						</Carousel.Item>
 						<Carousel.Item>
@@ -65,8 +63,8 @@ class RecordsList extends Component {
 								src="/images/hero_image3.jpg"
 							/>
 							<Carousel.Caption>
-								<h3>third slide label</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+								<h3>Knowledgeable staff</h3>
+								<p>We have experience in all types of djing</p>
 							</Carousel.Caption>
 						</Carousel.Item>
 					</Carousel>
