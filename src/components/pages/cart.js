@@ -139,7 +139,7 @@ class Cart extends Component {
 				</Row>
 				<Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
 					<Modal.Header closeButton>
-						<Modal.Title>Modal heading</Modal.Title>
+						<Modal.Title>Check out</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
 						<h6>Your order has been saved</h6>
