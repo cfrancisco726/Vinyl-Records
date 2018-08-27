@@ -39,6 +39,7 @@ app.post('/cart', function(req, res) {
 		}
 		res.json(req.session.cart);
 	});
+
 	app.get('/cart', function(req, res) {
 		if (typeof req.session.cart !== 'undefined') {
 			res.json(req.session.cart);
