@@ -14,10 +14,16 @@ app.use(cookieParser());
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://cfran26:test26@ds243491.mlab.com:43491/recordshop');
+// mongoose.connect('mongodb://cfran26:test26@ds243491.mlab.com:43491/recordshop');
+// mongoose.connect('mongodb+srv://cfrancisco26:Msmongo26@@cfran1.yx9bh.mongodb.net/recordshop?retryWrites=true&w=majority');
+
 // mongoose.connect('mongodb://localhost:27017/recordshop', {
 // 	useNewUrlParser: true
 // });
+
+mongoose.connect('mongodb+srv://cfrancisco26:Msmongo26@@projects.x584w.mongodb.net/vinyldb', {
+	useNewUrlParser: true
+});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, '# MongoDB = connection error:'));
