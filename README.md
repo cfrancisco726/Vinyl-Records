@@ -8,12 +8,13 @@ A content management system that allows users to purchase records. An admin pane
 
 Live demo [_here_](https://destination-finder.herokuapp.com/)
 
-> Since it is hosted on heroku the initial load time may lag. Currently there are issues connecting to MongoDB atlas so trips at the moment can't be saved. Previous working database was connected to mLab. There have been changes to the API so the search function may not return results on every destination anymore.
+> Local version is working. Currently experiencing problems with Heroku for live version.
 
 ## Description
 
 - React App that connects to a NodeJS and Express backend. Communicates data with Mongo Atlas database.
-- Admin section to set record price, image, name and
+- Admin section to add record price, image, artist and record title. Delete option as well.
+- Can purchase records and see in cart
 
 ## Technologies Used
 
@@ -26,13 +27,28 @@ Live demo [_here_](https://destination-finder.herokuapp.com/)
 
 ## Features
 
-- Material UI form with error handling. Submits a request to Amadeus API for flight information.
-- Google Maps plots flight data.
-- Flights can be saved to saved flights page.
+- React-boostrap carousel.
+- Admin page to add and delete record details
+- Records available for purchase displayed on landing
+- responsive
+- about section
+- cart showing buy now item
 
-## Landing page with form and google map
+## Landing page with carousel and records available for purchase
 
-![Example screenshot](./client/src/images/wanderlust.png)
+![Example screenshot](./public/images/Vinyl_records_home.png)
+
+## About
+
+![Example screenshot](./public/images/about.png)
+
+## Contact Us
+
+![Example screenshot](./public/images/contact_us_page.png)
+
+## Cart
+
+![Example screenshot](./public/images/checkout.png)
 
 ## 🛠️ Installation Steps
 
@@ -42,18 +58,12 @@ Install dependencies
 npm install
 ```
 
-Use node version 9.7.1
-
-```bash
-nvm use 9.7.1
-```
-
 ### Executing program
 
-Running the following script runs several other scripts: "concurrently \"npm run client\" \"npm run server\"",
+Running the following script runs: "node ./bin/www & node apiServer.js"
 
 ```
-npm run dev
+npm start
 ```
 
 ## Contact
